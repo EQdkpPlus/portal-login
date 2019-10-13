@@ -44,7 +44,13 @@
 										<div class="clear"></div>
 									</li>
 
-		
+									<li><a href="{EQDKP_CONTROLLER_PATH}Notifications{SEO_EXTENSION}{SID}"><i class="fa fa-bell fa-lg"></i> {L_notifications}
+													<span class="bubble-red notification-bubble-red" <!-- IF NOTIFICATION_COUNT_RED == 0 -->style="display:none;"<!-- ENDIF --> >{NOTIFICATION_COUNT_RED}</span>
+													<span class="bubble-yellow notification-bubble-yellow" <!-- IF NOTIFICATION_COUNT_YELLOW == 0 -->style="display:none;"<!-- ENDIF -->>{NOTIFICATION_COUNT_YELLOW}</span>
+													<span class="bubble-green notification-bubble-green" <!-- IF NOTIFICATION_COUNT_GREEN == 0 -->style="display:none;"<!-- ENDIF -->>{NOTIFICATION_COUNT_GREEN}</span>
+												</a></li>
+									
+									
 									<!-- BEGIN user_tooltip_addition -->
 									<li class="{user_tooltip_addition.CLASS}">{user_tooltip_addition.TEXT}</li>
 									<!-- END user_tooltip_addition -->
@@ -53,6 +59,12 @@
 									<!-- ENDIF -->
 									<li><a href="{U_USER_PROFILE}"><i class="fa fa-user fa-lg"></i> {L_my_profile}</a></li>
 									<li><a href="{EQDKP_CONTROLLER_PATH}Settings{SEO_EXTENSION}{SID}"><i class="fa fa-cog fa-lg"></i> {L_settings}</a></li>
+									<!-- IF U_CHARACTERS != "" --><li><a href="{U_CHARACTERS}"><i class="fa fa-group fa-lg"></i> {L_menu_members}</a></li><!-- ENDIF -->
+									
+									
+									<!-- IF S_ADMIN -->
+									<li><a href="{EQDKP_ROOT_PATH}admin/{SID}"><i class="fa fa-cog fa-lg"></i> {L_menu_admin_panel}</a></li>
+									<!-- ENDIF -->
 									<li><a href="{U_LOGOUT}"><i class="fa fa-sign-out fa-lg"></i> {L_logout}</a></li>
 								</ul>
 		<!-- ENDIF -->

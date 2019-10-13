@@ -28,7 +28,7 @@ class login_portal extends portal_generic {
 	
 	protected static $data = array(
 		'name'			=> 'Login Module',
-		'version'		=> '1.0.0',
+		'version'		=> '1.0.1',
 		'author'		=> 'GodMod',
 		'icon'			=> 'fa-user',
 		'contact'		=> EQDKP_PROJECT_URL,
@@ -65,6 +65,16 @@ class login_portal extends portal_generic {
 			}
 		}
 		
+		//Notifications
+		$arrNotifications = $this->ntfy->createNotifications();
+		$this->tpl->assign_vars(array(
+				'NOTIFICATION_COUNT_RED'	=> $arrNotifications['count2'],
+				'NOTIFICATION_COUNT_YELLOW' => $arrNotifications['count1'],
+				'NOTIFICATION_COUNT_GREEN' 	=> $arrNotifications['count0'],
+				'NOTIFICATION_COUNT_TOTAL'	=> $arrNotifications['count'],
+				'NOTIFICATIONS'				=> $arrNotifications['html'],
+		));
+		
 		
 		$this->tpl->assign_vars(array(
 				'AUTH_LOGIN_BUTTON'			=> (!$this->user->is_signedin()) ? implode(' ', $this->user->handle_login_functions('login_button')) : '',
@@ -76,6 +86,7 @@ class login_portal extends portal_generic {
 				'USER_IS_AWAY'				=> ($this->user->data['user_id'] > 0) ? $this->pdh->get('calendar_raids_attendees', 'user_awaymode', array($this->user->data['user_id'])) : false,
 				'U_LOGOUT'					=> $this->controller_path.'Login/Logout'.$this->routing->getSeoExtension().$this->SID.'&amp;link_hash='.$this->user->csrfGetToken("login_pageobjectlogout"),
 				'U_REGISTER'				=> $registerLink,
+				'U_CHARACTERS'				=> ($this->user->is_signedin() && !$this->config->get('disable_guild_features') && $this->user->check_auths(array('u_member_man', 'u_member_add', 'u_member_conn', 'u_member_del'), 'OR', false)) ? $this->controller_path.'MyCharacters' . $this->routing->getSeoExtension().$this->SID : '',
 		));
 		
 		$this->header = (!$this->user->is_signedin()) ? $this->user->lang('login') : $this->user->lang('user');
