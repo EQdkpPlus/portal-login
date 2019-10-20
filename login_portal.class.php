@@ -28,7 +28,7 @@ class login_portal extends portal_generic {
 	
 	protected static $data = array(
 		'name'			=> 'Login Module',
-		'version'		=> '1.0.1',
+		'version'		=> '1.0.2',
 		'author'		=> 'GodMod',
 		'icon'			=> 'fa-user',
 		'contact'		=> EQDKP_PROJECT_URL,
@@ -59,7 +59,7 @@ class login_portal extends portal_generic {
 		if ( ! $this->user->is_signedin() && intval($this->config->get('enable_registration'))){
 			//CMS register?
 			if ($this->config->get('cmsbridge_active') == 1 && strlen($this->config->get('cmsbridge_reg_url'))){
-				$registerLink = $this->core->createLink($this->handle_link($this->config->get('cmsbridge_reg_url'),$this->user->lang('menu_register'),$this->config->get('cmsbridge_embedded'),'BoardRegister', '', '', 'fa fa-user-plus fa-lg', ''), 'register');
+				$registerLink = $this->core->createLink($this->core->handle_link($this->config->get('cmsbridge_reg_url'),$this->user->lang('menu_register'),$this->config->get('cmsbridge_embedded'),'BoardRegister', '', '', 'fa fa-user-plus fa-lg', ''), 'register');
 			} else {
 				$registerLink = $this->core->createLink(array('link' => $this->controller_path_plain.'Register' . $this->routing->getSeoExtension().$this->SID, 'text' => $this->user->lang('menu_register'), 'icon' => 'fa fa-user-plus fa-lg'), 'register');
 			}
