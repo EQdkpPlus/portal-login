@@ -28,7 +28,7 @@ class login_portal extends portal_generic {
 	
 	protected static $data = array(
 		'name'			=> 'Login Module',
-		'version'		=> '1.0.2',
+		'version'		=> '1.0.3',
 		'author'		=> 'GodMod',
 		'icon'			=> 'fa-user',
 		'contact'		=> EQDKP_PROJECT_URL,
@@ -79,7 +79,7 @@ class login_portal extends portal_generic {
 		$this->tpl->assign_vars(array(
 				'AUTH_LOGIN_BUTTON'			=> (!$this->user->is_signedin()) ? implode(' ', $this->user->handle_login_functions('login_button')) : '',
 				'S_SHOW_PWRESET_LINK'		=> ($this->config->get('cmsbridge_active') == 1 && !strlen($this->config->get('cmsbridge_pwreset_url'))) ? false : true,
-				'U_PWRESET_LINK'			=> ($this->config->get('cmsbridge_active') == 1 && strlen($this->config->get('cmsbridge_pwreset_url'))) ? $this->createLink($arrPWresetLink) : '<a href="'.$this->controller_path."Login/LostPassword/".$this->SID."\">".$this->user->lang('lost_password').'</a>',
+				'U_PWRESET_LINK'			=> ($this->config->get('cmsbridge_active') == 1 && strlen($this->config->get('cmsbridge_pwreset_url'))) ? $this->core->createLink($arrPWresetLink) : '<a href="'.$this->controller_path."Login/LostPassword/".$this->SID."\">".$this->user->lang('lost_password').'</a>',
 				'USER_AVATAR'				=> $strAvatarImg,
 				'U_USER_PROFILE'			=> $this->routing->build('user', (isset($this->user->data['username']) ? sanitize($this->user->data['username']) : $this->user->lang('anonymous')), 'u'.$this->user->id),
 				'HONEYPOT_VALUE'			=> $this->user->csrfGetToken("honeypot"),
