@@ -28,7 +28,7 @@ class login_portal extends portal_generic {
 	
 	protected static $data = array(
 		'name'			=> 'Login Module',
-		'version'		=> '1.0.3',
+		'version'		=> '1.0.4',
 		'author'		=> 'GodMod',
 		'icon'			=> 'fa-user',
 		'contact'		=> EQDKP_PROJECT_URL,
